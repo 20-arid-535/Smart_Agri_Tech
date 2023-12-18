@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "463033810364",
+    "firebase_url": "https://smart-agri-tech-default-rtdb.firebaseio.com",
+    "project_id": "smart-agri-tech",
+    "storage_bucket": "smart-agri-tech.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:463033810364:android:37b0542c8855cb1a0c7fb9",
+        "android_client_info": {
+          "package_name": "com.example.smartagritech"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDyh2h9rvGxvTXCDqjGdeHAfEe6V4lC4tI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

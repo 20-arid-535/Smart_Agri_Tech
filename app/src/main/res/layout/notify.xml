@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+android:background="#0A0B27"
+    android:orientation="vertical">
+<TextView
+    android:id="@+id/t1"
+    android:layout_marginTop="7dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Low Moisture"
+    android:textStyle="bold"
+    android:textSize="17dp"
+    android:textColor="@color/white"
+    ></TextView>
+    <TextView
+        android:id="@+id/t2"
+        android:layout_marginTop="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="your moisture level is below 20%"
+        android:layout_marginBottom="6dp"
+        android:textColor="@color/white">
+    </TextView>
+</LinearLayout>

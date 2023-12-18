@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".WheatRust" android:orientation="vertical"
+    android:background="@color/back">
+    <LinearLayout
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/back"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="19dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/v69">
+        </ImageView>
+        <TextView
+            android:layout_marginTop="13dp"
+            android:layout_marginStart="19dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="Rust Detection"
+            android:textSize="21dp"
+            android:textStyle="bold"></TextView>
+    </LinearLayout>
+    <View
+        android:layout_margin="9dp"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#878282"></View>
+    <TextView
+        android:layout_marginTop="22dp"
+        android:textAlignment="center"
+        android:textSize="12dp"
+        android:textColor="@color/colorAccent"
+        android:text="Please insert the clear image from gallery or capture through camera so that the result will be shown as accurate as possible."
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </TextView>
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginRight="28dp"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="20dp"
+        android:background="@drawable/custom_edittext"
+        >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/i12"
+            android:src="@drawable/d1"
+            android:scaleType="fitXY"
+            ></ImageView>
+    </androidx.cardview.widget.CardView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
+        <Button
+            android:id="@+id/loginButton"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_marginTop="20dp"
+            android:drawableLeft="@drawable/amera"
+            android:drawablePadding="4dp"
+            android:backgroundTint="@color/colorAccent"
+            android:text="Camera"
+            android:textSize="12sp"
+            app:cornerRadius="20dp" />
+        <Button
+            android:id="@+id/loginButton1"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_marginStart="40dp"
+            android:drawableLeft="@drawable/file"
+            android:drawablePadding="4dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/colorAccent"
+            android:text="Gallery"
+            android:textSize="12sp"
+            app:cornerRadius="20dp" />
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="14dp"
+        android:text="Result:"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:textColor="@color/colorAccent">
+    </TextView>
+    <TextView
+        android:id="@+id/result"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginStart="9dp"
+        android:layout_marginEnd="9dp"
+        android:background="@drawable/custom_edittext"
+        android:padding="15dp"
+        android:text="No Result"
+        android:textColor="@color/white"
+        android:ellipsize="end"
+        android:textSize="18dp"></TextView>
+
+</LinearLayout>

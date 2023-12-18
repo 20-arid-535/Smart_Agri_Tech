@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="130dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="center"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    app:cardElevation="6dp"
+    app:cardCornerRadius="10dp"
+    android:background="@android:color/transparent"
+    android:layout_marginBottom="6dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/card_back"
+        android:orientation="vertical">
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+
+           android:orientation="horizontal"
+           >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/idTVTime1"
+            android:padding="4dp"
+            android:text="DAY"
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            >
+
+        </TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/idTVTime"
+            android:padding="4dp"
+            android:text="Time"
+            android:textColor="@color/white"
+
+
+            />
+       </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/idTVTemp2"
+            android:layout_weight="1"
+            android:text="20"
+            android:padding="4dp"
+            android:textSize="20sp"
+            android:textColor="@color/white"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/idTVTemp12"
+            android:padding="4dp"
+            android:text="20"
+            android:textSize="20sp"
+
+            android:textColor="@color/white"/>
+        </LinearLayout>
+        <ImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:id="@+id/idIVCondition"
+            android:layout_centerHorizontal="true"
+
+            android:layout_gravity="center"
+            android:src="@mipmap/ic_launcher"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/idTVTime11"
+                android:padding="4dp"
+                android:text="Humidity"
+                android:textColor="@color/white"
+                android:layout_weight="1"
+                >
+
+            </TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/idTVTime111"
+                android:padding="4dp"
+                android:text="50%"
+                android:textColor="@color/white"
+
+
+                />
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
