@@ -16,13 +16,22 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.smartagritech.ml.BestFloat32;
 import com.example.smartagritech.ml.BestFloat322;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.tensorflow.lite.DataType;
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer;
 
@@ -30,19 +39,22 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class WheatRust extends AppCompatActivity {
 
     SharedPreferences sh;
-
+    String url = "http://noman78621.pythonanywhere.com/predict";
     NotificationHelper nh;
     String key;
-    Button b1,b2;
+    Button b1,b2,b3;
     ImageView i1,i2;
     Uri selectedImageUri;
     Bitmap B;
     String[] labels;
-    TextView rs;
+String result="";
+    EditText tem,hum;
     int imageSize = 640;//224
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +65,11 @@ public class WheatRust extends AppCompatActivity {
         nh=new NotificationHelper(this);
         b1=findViewById(R.id.loginButton);
         b2=findViewById(R.id.loginButton1);
+        b3=findViewById(R.id.predict);
         i1=findViewById(R.id.i12);
         i2=findViewById(R.id.back);
-        rs=findViewById(R.id.result);
+        hum=findViewById(R.id.humidity);
+        tem =findViewById(R.id.temp);
         i2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,6 +91,63 @@ public class WheatRust extends AppCompatActivity {
                 i.setType("image/*");
                 i.setAction(Intent.ACTION_GET_CONTENT);
                 startActivityForResult(i, 1);
+            }
+        });
+        b3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               if(hum.getText().toString()!=""||tem.getText().toString()!=""){
+                   StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                           new Response.Listener<String>() {
+                               @Override
+                               public void onResponse(String response) {
+
+                                   try {
+                                       JSONObject jsonObject = new JSONObject(response);
+                                       String data = jsonObject.getString("predict");
+                                       if(data.equals("1")){
+                                           result="UnHealthy";
+                                       }else{
+                                           result="Healthy";
+                                       }
+                                       AlertDialog.Builder builder=new AlertDialog.Builder(WheatRust.this);
+                                       builder.setTitle("Results").setMessage("Your plant is " +result).setCancelable(false)
+                                               .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                                                   @Override
+                                                   public void onClick(DialogInterface dialogInterface, int i) {
+
+                                                   }
+                                               }).show();
+
+                                   } catch (JSONException e) {
+                                       e.printStackTrace();
+                                   }
+
+                               }
+                           },
+                           new Response.ErrorListener() {
+                               @Override
+                               public void onErrorResponse(VolleyError error) {
+                                   Toast.makeText(WheatRust.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                               }
+                           }){
+
+                       @Override
+                       protected Map<String,String> getParams(){
+                           Map<String,String> params = new HashMap<String,String>();
+                           params.put("humidity",hum.getText().toString());
+                           params.put("temperature",tem.getText().toString());
+
+                           return params;
+                       }
+
+                   };
+                   RequestQueue queue = Volley.newRequestQueue(WheatRust.this);
+                   queue.add(stringRequest);
+               }
+               else {
+                   Toast.makeText(WheatRust.this, " Fill each column", Toast.LENGTH_SHORT).show();
+               }
             }
         });
     }
@@ -121,7 +192,7 @@ public class WheatRust extends AppCompatActivity {
             String[] classes = {"healthy", "unhealthy"};
             Toast.makeText(WheatRust.this, classes[maxPos], Toast.LENGTH_SHORT).show();
             i1.setImageBitmap(photo);
-            rs.setText(classes[maxPos]+"   "+String.valueOf((int)(maxConfidence*100))+"%");
+            //rs.setText(classes[maxPos]+"   "+String.valueOf((int)(maxConfidence*100))+"%");
             if(classes[maxPos]=="unhealthy"){
                 nh.send(key,"Rust detected","Your plant is attack by rust disease");
             }

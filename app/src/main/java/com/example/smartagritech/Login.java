@@ -49,6 +49,7 @@ public class Login extends AppCompatActivity {
         password.setText("1234");
         checkPermission(android.Manifest.permission.CAMERA, 11);
         SharedPreferences sh=getSharedPreferences("Userinfo",MODE_PRIVATE);
+
 SharedPreferences.Editor ed=sh.edit();
 if(sh.contains("Email")){
 
@@ -95,12 +96,14 @@ d.show();
                                 String pass = new String();
                                 String name = new String();
                                 String url = new String();
+                                String far = new String();
                                 for (DataSnapshot userSnapshot: dataSnapshot.getChildren()) {
                                     key = userSnapshot.getKey();
                                      email = userSnapshot.child("email").getValue(String.class);
                                     pass= userSnapshot.child("pass").getValue(String.class);
                                     name= userSnapshot.child("name").getValue(String.class);
                                     url =userSnapshot.child("url").getValue(String.class);
+                                    far=userSnapshot.child("farmer").getValue(String.class);
                                 }
 
                                 if (s11.equals(email) && s12.equals(pass)) {
@@ -111,8 +114,13 @@ d.show();
                                     ed.putString("Email",email);
                                     ed.putString("Pass",pass);
                                     ed.putString("Url",url);
+                                    ed.putString("Farmer",far);
                                     ed.commit();
+
+                                    getcontroldata();
+
                                     d.dismiss();
+
                                       Intent i = new Intent(Login.this, Home.class);
                                        startActivity(i);
                                      }
@@ -170,5 +178,38 @@ d.show();
                 Toast.makeText(Login.this, "Camera Permission Denied", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+    private void getcontroldata() {
+        SharedPreferences sh1=getSharedPreferences("Controlinfo",MODE_PRIVATE);
+
+        SharedPreferences.Editor ed1=sh1.edit();
+
+        DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference().child("Control");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                if (dataSnapshot.exists()) {
+                    // Get values from dataSnapshot and update TextViews
+
+                    ed1.putBoolean("AutoD",dataSnapshot.child("DripCrop").child("auto").getValue(Boolean.class));
+                    ed1.putBoolean("AutoR",dataSnapshot.child("RainGun").child("auto").getValue(Boolean.class));
+                    ed1.putBoolean("AutoO",dataSnapshot.child("Orchard").child("auto").getValue(Boolean.class));
+                    ed1.putBoolean("ManualD",dataSnapshot.child("DripCrop").child("DS1").getValue(Boolean.class));
+                    ed1.putBoolean("ManualR",dataSnapshot.child("RainGun").child("RS1").getValue(Boolean.class));
+                    ed1.putBoolean("ManualO",dataSnapshot.child("Orchard").child("OS1").getValue(Boolean.class));
+                    ed1.commit();
+
+                }
+
+                }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // calling on cancelled method when we receive
+                // any error or we are not able to get the data.
+                Toast.makeText(Login.this, "Fail to get data.", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

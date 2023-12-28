@@ -34,19 +34,12 @@
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:background="#878282"></View>
-    <TextView
-        android:layout_marginTop="22dp"
-        android:textAlignment="center"
-        android:textSize="12dp"
-        android:textColor="@color/colorAccent"
-        android:text="Please insert the clear image from gallery or capture through camera so that the result will be shown as accurate as possible."
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-    </TextView>
+
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="250dp"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="28dp"
         android:layout_marginRight="28dp"
@@ -91,26 +84,60 @@
             android:textSize="12sp"
             app:cornerRadius="20dp" />
     </LinearLayout>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="14dp"
-        android:text="Result:"
+        android:text="Humidity:"
         android:textSize="18dp"
         android:textStyle="bold"
         android:textColor="@color/colorAccent">
     </TextView>
-    <TextView
-        android:id="@+id/result"
+    <EditText
+        android:id="@+id/humidity"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="9dp"
         android:layout_marginEnd="9dp"
         android:background="@drawable/custom_edittext"
-        android:padding="15dp"
-        android:text="No Result"
+        android:padding="5dp"
+
         android:textColor="@color/white"
         android:ellipsize="end"
-        android:textSize="18dp"></TextView>
+        android:textSize="18dp"></EditText>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="14dp"
+        android:text="Temperature:"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:textColor="@color/colorAccent">
+    </TextView>
+    <EditText
+        android:id="@+id/temp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="9dp"
+        android:layout_marginEnd="9dp"
+        android:background="@drawable/custom_edittext"
+        android:padding="5dp"
+        android:textColor="@color/white"
+        android:ellipsize="end"
+        android:textSize="18dp"></EditText>
+
+    <Button
+        android:id="@+id/predict"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal"
+        android:backgroundTint="@color/colorAccent"
+        android:text="predict"
+        android:textSize="12sp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        app:cornerRadius="20dp" />
 
 </LinearLayout>

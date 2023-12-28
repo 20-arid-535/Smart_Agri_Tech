@@ -100,6 +100,7 @@ public class Signup extends AppCompatActivity {
                 if(!dataSnapshot.exists()) {
                     Map<String,Object> map = new HashMap<>();
                     map.put("email",email);
+                    map.put("farmer","false");
                     map.put("name",user);
                     map.put("pass",pass);
                     map.put("url","https://firebasestorage.googleapis.com/v0/b/smart-agri-tech.appspot.com/o/uploads%2F1701365676305.png?alt=media&token=3c45c606-488f-4f27-9a95-c9c57cafa70a");

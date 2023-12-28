@@ -1,12 +1,14 @@
 package com.example.smartagritech;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -62,6 +64,7 @@ BottomNavigationView b;
         super.onCreate(savedInstanceState);
         //4BA26AgetWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_home);
+
         b=findViewById(R.id.bottomNavigationView);
         sh=getSharedPreferences("Userinfo",MODE_PRIVATE);
         i=findViewById(R.id.i11);
@@ -76,6 +79,7 @@ BottomNavigationView b;
         c4=findViewById(R.id.c4);
         c5=findViewById(R.id.c5);
         fb=findViewById(R.id.fb1);
+        SharedPreferences sh=getSharedPreferences("Userinfo",MODE_PRIVATE);
         Menu menu = b.getMenu();
         menuItem = menu.findItem(R.id.home);
 
@@ -122,9 +126,23 @@ BottomNavigationView b;
         c1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(Home.this, IrrigationControl.class);
-                startActivity(i);
-                Toast.makeText(Home.this, "1!", Toast.LENGTH_SHORT).show();
+                if(sh.getString("Farmer", "").equals("false"))
+                {
+                    AlertDialog.Builder builder=new AlertDialog.Builder(Home.this);
+                    builder.setTitle("Notify").setMessage("you are not a farmer").setCancelable(false)
+                            .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+
+                                }
+                            }).show();
+                }
+                else{
+                    Intent i = new Intent(Home.this, IrrigationControl.class);
+                    startActivity(i);
+                    Toast.makeText(Home.this, "1!", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
         c2.setOnClickListener(new View.OnClickListener() {
@@ -138,9 +156,21 @@ BottomNavigationView b;
         c3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(sh.getString("Farmer", "").equals("false"))
+                {
+                    AlertDialog.Builder builder=new AlertDialog.Builder(Home.this);
+                    builder.setTitle("Notify").setMessage("you are not a farmer").setCancelable(false)
+                            .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+
+                                }
+                            }).show();
+                }
+                else{
                 Intent i2 = new Intent(Home.this, SoilFarm.class);
                 startActivity(i2);
-                Toast.makeText(Home.this, "3", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Home.this, "3", Toast.LENGTH_SHORT).show();}
             }
         });
         c5.setOnClickListener(new View.OnClickListener() {
@@ -166,15 +196,43 @@ BottomNavigationView b;
                     break;
 
                 case R.id.shorts:
+                    if(sh.getString("Farmer", "").equals("false"))
+                    {
+                        AlertDialog.Builder builder=new AlertDialog.Builder(Home.this);
+                        builder.setTitle("Notify").setMessage("you are not a farmer").setCancelable(false)
+                                .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        if (menuItem != null) {
+                                            menuItem.setChecked(true);
+                                        }
+                                    }
+                                }).show();
+                    }
+                    else{
                     Intent i = new Intent(Home.this, IrrigationControl.class);
                     startActivity(i);
-                    Toast.makeText(Home.this, "2!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Home.this, "2!", Toast.LENGTH_SHORT).show();}
                     break;
 
                 case R.id.subscriptions:
+                    if(sh.getString("Farmer", "").equals("false"))
+                    {
+                        AlertDialog.Builder builder=new AlertDialog.Builder(Home.this);
+                        builder.setTitle("Notify").setMessage("you are not a farmer").setCancelable(false)
+                                .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        if (menuItem != null) {
+                                            menuItem.setChecked(true);
+                                        }
+                                    }
+                                }).show();
+                    }
+                    else{
                     Intent i2 = new Intent(Home.this, SoilFarm.class);
                     startActivity(i2);
-                    Toast.makeText(Home.this, "3!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Home.this, "3!", Toast.LENGTH_SHORT).show();}
                     break;
 
                 case R.id.library:
